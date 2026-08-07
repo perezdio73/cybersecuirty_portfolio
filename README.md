@@ -1,51 +1,49 @@
-Cybersecurity & Network Defense Portfolio
-Welcome to my main cybersecurity lab repo. This is where I drop my hands-on projects, security automation scripts, packet captures, and server hardening configs. It covers pretty much everything I work on around security ops, threat detection, and network defense.
+Network Security & Defense Labs
+Hey, welcome to my lab repo. This is where I dump all my hands-on network security stuff, system hardening setups, and python automation scripts. It's basically a sandbox for the tools and workflows I use to analyze traffic, catch threats, and lock down systems.
 
-🛠️ Portfolio Overview & Lab Modules
-1. Python Automation & Security Scripts
-The Goal: Automate repetitive security tasks like parsing through raw log files and updating access control lists.
+What's in Here
+1. Packet Analysis & Traffic Inspection
+Focus: Inspecting raw traffic, decoding payloads, and tracking down connection problems.
 
-The Files:
+Tools: Wireshark, Nmap, tcpdump
 
-log_parser.py – Script that reads through auth logs (server_auth.log) to spot brute-force attempts and flag bad IP addresses.
+What I do: Follow TCP streams, spot unencrypted logins (HTTP/DNS/FTP), inspect packet flags (SYN/ACK), and figure out why traffic isn't flowing right.
 
-allow_list_updater.py – Script that automatically updates IP allow lists (allow_list.txt) based on defined security rules.
+2. Firewalls & Network Setup
+Focus: Setting up firewall rules, dropping bad traffic, and keeping subnets separated.
 
-2. Linux Hardening & Defensive Setup (Fail2ban & SSH)
-The Goal: Lock down an Ubuntu server, cut down potential attack vectors, and auto-block bad traffic.
+Tools: pfSense, VLANs, stateful firewalls
 
-The Files:
+What I do: Build default-deny rules, separate guest VLANs from main internal networks, filter inbound/outbound traffic, and check firewall logs when stuff gets blocked.
 
-configs/ – My hardened SSH config settings (no direct root login, key-based auth only) and custom Fail2ban jail settings.
+3. SIEM & Log Monitoring
+Focus: Pooling logs together, hunting for suspicious activity, and tracking down alerts.
 
-fail2ban_banned_ips.txt – Live output log showing IPs getting automatically banned after triggering failed login limits.
+Tools: Splunk, Syslog, MITRE ATT&CK
 
-3. Network Traffic Analysis & Wireshark PCAPs
-The Goal: Dig into application traffic, reconstruct TCP streams, and catch unencrypted data moving across the network.
+What I do: Write SPL search queries, build basic SOC dashboards, catch sudden spikes in failed logins, and match alerts to MITRE ATT&CK techniques.
 
-The Findings: Caught cleartext login credentials sent over plain HTTP POST requests and broke down TCP flags (SYN/ACK) during Nmap port scans.
+4. Linux Hardening & System Admin
+Focus: Securing Linux boxes, checking open ports, and auto-blocking brute-force attacks.
 
-The Files: cleartext_http_capture.pcapng
+Tools: Ubuntu/Debian CLI, SSH, Fail2ban, ss, lsof, systemctl
 
-4. Firewall Rules & Network Segmentation (pfSense)
-The Goal: Set up strict network access controls and separate internal traffic across different VLANs.
+What I do: Turn off SSH root logins, switch to SSH keys, find open listening ports with ss/lsof, kill off unneeded services, and set up Fail2ban to auto-ban bad IPs.
 
-The Findings: Set up default-deny firewall policies in pfSense to keep guest network traffic completely isolated from trusted internal subnets.
+5. Python Automation & Scripting
+Focus: Writing quick scripts to handle boring tasks and parse logs fast.
 
-The Files: firewall_rules_lan.png, firewall_block_events.txt
+Tools: Python 3, Bash, Regex
 
-5. SIEM Threat Detection & Log Analysis (Splunk)
-The Goal: Pull in logs from multiple sources, write custom search queries, and map detected attacks back to security frameworks.
+What I do: Parse raw auth logs, pull out bad IP addresses, update allow/deny lists automatically, and write clean script utilities.
 
-The Findings: Built custom SPL queries in Splunk to flag login spikes and port scans, mapping alerts directly to MITRE ATT&CK (Brute Force - T1110).
+Quick Stack Overview
+Traffic & Scans: Wireshark, Nmap, tcpdump
 
-The Files: queries/failed_login_spikes.spl, reports/incident_report_brute_force.md
+Defensive Tools: pfSense, VLANs, Fail2ban, OpenSSH
 
-💻 Tech & Tools I Use
-Languages & Scripting: Python, Bash, SPL (Splunk)
+SIEM & Logs: Splunk (SPL), Syslog, auth.log, MITRE ATT&CK
 
-Packet & Network Analysis: Wireshark, Nmap, tcpdump
+Linux & Code: Python 3, Bash, Ubuntu/Debian CLI, ss, lsof, systemctl
 
-System Defense & Linux Admin: Ubuntu/Debian, SSH, Fail2ban, ss, lsof, systemctl
-
-Networking & Firewalls: pfSense, VLANs, TCP/IP, HTTP/HTTPS Protocol Analysis
+Protocols: TCP/IP, HTTP/HTTPS, DNS, SSH, Subnetting
